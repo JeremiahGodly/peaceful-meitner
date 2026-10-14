@@ -1,0 +1,20 @@
+{
+  "name": "antigravity-to-ghpages-hyperframes",
+  "version": "1.0.0",
+  "description": "HyperFrames (HeyGen) 9:16 vertical motion graphics video showing Antigravity AI, Localhost preview, and GitHub Pages deployment",
+  "scripts": {
+    "preview": "npx hyperframes preview",
+    "render": "npx hyperframes render --output video.mp4",
+    "serve": "npx serve ."
+  },
+  "keywords": [
+    "hyperframes",
+    "heygen",
+    "motion-graphics",
+    "antigravity",
+    "github-pages",
+    "video"
+  ],
+  "author": "Antigravity Pair Programmer",
+  "license": "MIT"
+}

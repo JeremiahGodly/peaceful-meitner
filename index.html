@@ -1,0 +1,1653 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Desktop Home ➔ Antigravity ➔ Finder ➔ GitHub Desktop ➔ Chrome Pages (HyperFrames 9:16)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <style>
+    :root {
+      --bg: #07090e;
+      --card-bg: rgba(13, 17, 28, 0.92);
+      --card-border: rgba(255, 255, 255, 0.14);
+      --purple: #8b5cf6;
+      --indigo: #6366f1;
+      --cyan: #00f0ff;
+      --emerald: #10b981;
+      --pink: #ec4899;
+      --amber: #f59e0b;
+      --white: #ffffff;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      background: #030407;
+      color: var(--white);
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Outer Phone Stage Container */
+    .player-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      max-width: calc(100vh * (9 / 16));
+      max-height: 100vh;
+      aspect-ratio: 9 / 16;
+      background: #000;
+      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.9), 0 0 100px rgba(139, 92, 246, 0.2);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* HyperFrames Composition Root (1080 x 1920) */
+    #root {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 1080px;
+      height: 1920px;
+      transform-origin: top left;
+      background: radial-gradient(circle at 50% 0%, #1e1b4b 0%, #0c0f1d 40%, #05070c 100%);
+      overflow: hidden;
+    }
+
+    /* Ambient Aurora & Wallpaper */
+    .aurora-layer {
+      position: absolute;
+      inset: -200px;
+      background: 
+        radial-gradient(circle at 20% 25%, rgba(0, 240, 255, 0.25) 0%, transparent 45%),
+        radial-gradient(circle at 80% 35%, rgba(139, 92, 246, 0.30) 0%, transparent 50%),
+        radial-gradient(circle at 50% 75%, rgba(236, 72, 153, 0.22) 0%, transparent 55%),
+        radial-gradient(circle at 80% 90%, rgba(16, 185, 129, 0.22) 0%, transparent 45%);
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .grid-overlay {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* Top macOS Desktop Menu Bar */
+    .macos-menu-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 54px;
+      background: rgba(10, 14, 24, 0.7);
+      backdrop-filter: blur(30px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      font-size: 19px;
+      font-weight: 700;
+      z-index: 50;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .menu-left {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .menu-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 18px;
+    }
+
+    /* Desktop Home Screen Surface */
+    .desktop-home-surface {
+      position: absolute;
+      inset: 0;
+      padding: 90px 48px 240px;
+      display: flex;
+      flex-direction: column;
+      z-index: 5;
+    }
+
+    .desktop-header-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-top: 40px;
+      margin-bottom: 60px;
+    }
+
+    .desktop-time-hero {
+      font-size: 110px;
+      font-weight: 900;
+      letter-spacing: -3px;
+      line-height: 1;
+      background: linear-gradient(135deg, #ffffff 40%, rgba(255, 255, 255, 0.5) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+    }
+
+    .desktop-date-hero {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--cyan);
+      letter-spacing: 0.5px;
+    }
+
+    /* Desktop Shortcuts Grid */
+    .desktop-shortcuts-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      max-width: 760px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .desktop-shortcut-card {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 28px;
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .shortcut-icon-box {
+      width: 90px;
+      height: 90px;
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 44px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .shortcut-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .shortcut-desc {
+      font-size: 18px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    /* THE FLOATING MACOS DOCK */
+    .macos-dock {
+      position: absolute;
+      bottom: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(20, 26, 42, 0.85);
+      backdrop-filter: blur(40px);
+      border: 2px solid rgba(255, 255, 255, 0.22);
+      border-radius: 44px;
+      padding: 16px 28px;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 240, 255, 0.15), inset 0 1px 1px rgba(255, 255, 255, 0.35);
+      z-index: 100;
+    }
+
+    .dock-app-item {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      transition: transform 0.18s cubic-bezier(0.2, 0, 0, 1.4);
+    }
+
+    .dock-app-icon {
+      width: 100px;
+      height: 100px;
+      border-radius: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 50px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+      border: 1.5px solid rgba(255, 255, 255, 0.25);
+      transition: all 0.15s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dock-app-label {
+      position: absolute;
+      top: -46px;
+      background: rgba(10, 14, 24, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #fff;
+      font-size: 18px;
+      font-weight: 800;
+      padding: 6px 16px;
+      border-radius: 12px;
+      white-space: nowrap;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: all 0.15s ease;
+      pointer-events: none;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+    }
+
+    .dock-active-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #fff;
+      margin-top: 6px;
+      opacity: 0.6;
+    }
+
+    /* Dock App Item Active/Hover States */
+    .dock-app-item.dock-hovered {
+      transform: scale(1.22) translateY(-14px);
+    }
+    .dock-app-item.dock-hovered .dock-app-label {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .dock-app-item.dock-hovered .dock-app-icon {
+      box-shadow: 0 18px 45px rgba(0, 240, 255, 0.6), inset 0 0 15px rgba(255, 255, 255, 0.6);
+      border-color: #fff;
+    }
+
+    .dock-app-item.dock-clicked {
+      transform: scale(1.08) translateY(-6px) !important;
+      filter: brightness(1.7);
+    }
+
+    /* Video Window Scenes (Overlay windows opening from Dock) */
+    .window-modal-scene {
+      position: absolute;
+      inset: 0;
+      width: 1080px;
+      height: 1920px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 68px 50px 80px;
+      z-index: 60;
+      opacity: 0;
+      pointer-events: none;
+      transform-origin: 50% 90%;
+    }
+
+    /* Window Card Container */
+    .window-card {
+      position: relative;
+      width: 100%;
+      flex: 1;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 34px;
+      backdrop-filter: blur(30px);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(255, 255, 255, 0.12);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .window-header {
+      height: 68px;
+      background: rgba(10, 14, 24, 0.95);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 0 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+
+    .window-dots {
+      display: flex;
+      gap: 10px;
+    }
+    .w-dot { width: 18px; height: 18px; border-radius: 50%; }
+    .w-red { background: #ff5f56; }
+    .w-yellow { background: #ffbd2e; }
+    .w-green { background: #27c93f; }
+
+    .window-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 22px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.85);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .window-body {
+      flex: 1;
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Real Software Screenshot Backdrop */
+    .software-preview-backdrop {
+      position: relative;
+      width: 100%;
+      height: 450px;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1.5px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+      flex-shrink: 0;
+    }
+
+    .software-screenshot-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      filter: contrast(1.05) saturate(1.1);
+    }
+
+    .software-glass-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(7, 9, 14, 0.15) 0%, rgba(7, 9, 14, 0.85) 100%);
+      pointer-events: none;
+    }
+
+    /* Isolated Action Buttons */
+    .isolated-action-btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      padding: 22px 38px;
+      border-radius: 22px;
+      font-size: 26px;
+      font-weight: 800;
+      color: #fff;
+      cursor: pointer;
+      border: 2px solid transparent;
+      outline: none;
+      transition: transform 0.12s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.15s ease, filter 0.15s ease;
+      z-index: 50;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
+    }
+
+    .btn-purple {
+      background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+      border-color: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 12px 35px rgba(99, 102, 241, 0.55), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+    }
+
+    .btn-cyan {
+      background: linear-gradient(135deg, #00f0ff 0%, #0284c7 100%);
+      color: #041021;
+      border-color: rgba(255, 255, 255, 0.4);
+      box-shadow: 0 12px 35px rgba(0, 240, 255, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.7);
+    }
+
+    .btn-gh-desktop {
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      border-color: rgba(255, 255, 255, 0.4);
+      box-shadow: 0 12px 35px rgba(37, 99, 235, 0.55), inset 0 1px 1px rgba(255, 255, 255, 0.5);
+    }
+
+    .btn-gh-green {
+      background: linear-gradient(135deg, #238636 0%, #2ea043 100%);
+      border-color: rgba(255, 255, 255, 0.4);
+      box-shadow: 0 12px 35px rgba(46, 160, 67, 0.55), inset 0 1px 1px rgba(255, 255, 255, 0.5);
+    }
+
+    .btn-pill-accent {
+      background: rgba(255, 255, 255, 0.14);
+      border: 1.5px solid rgba(255, 255, 255, 0.35);
+      padding: 14px 26px;
+      border-radius: 20px;
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .btn-live-url {
+      background: rgba(0, 0, 0, 0.7);
+      border: 2px solid var(--cyan);
+      color: var(--cyan);
+      padding: 20px 36px;
+      border-radius: 30px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 24px;
+      box-shadow: 0 0 35px rgba(0, 240, 255, 0.35);
+    }
+
+    .isolated-action-btn.btn-hovered {
+      box-shadow: 0 0 45px rgba(0, 240, 255, 0.8), 0 16px 40px rgba(0, 0, 0, 0.7) !important;
+      border-color: #fff !important;
+      transform: translateY(-3px) scale(1.02);
+    }
+
+    .isolated-action-btn.btn-pressed {
+      transform: scale(0.90) translateY(4px) !important;
+      filter: brightness(1.7) !important;
+    }
+
+    /* Prompt Box & Code Gen */
+    .ai-prompt-box {
+      background: rgba(18, 24, 38, 0.95);
+      border: 2px solid rgba(139, 92, 246, 0.5);
+      border-radius: 24px;
+      padding: 24px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      box-shadow: 0 16px 50px rgba(0, 0, 0, 0.7);
+    }
+
+    .code-gen-checklist {
+      background: rgba(5, 8, 14, 0.95);
+      border: 1.5px solid rgba(0, 240, 255, 0.3);
+      border-radius: 22px;
+      padding: 22px 26px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 22px;
+      color: #cbd5e1;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .gen-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      opacity: 0.3;
+      transform: translateX(-10px);
+      transition: all 0.3s ease;
+    }
+    .gen-item.active { opacity: 1; transform: translateX(0); color: var(--cyan); }
+    .gen-item.done { opacity: 1; transform: translateX(0); color: var(--emerald); }
+
+    .gen-complete-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 20px;
+      border-radius: 16px;
+      background: rgba(16, 185, 129, 0.2);
+      border: 1.5px solid var(--emerald);
+      color: var(--emerald);
+      font-size: 22px;
+      font-weight: 800;
+      opacity: 0;
+      transform: scale(0.9);
+    }
+
+    /* Localhost & Browser Preview */
+    .site-preview-screen {
+      flex: 1;
+      border-radius: 24px;
+      background: radial-gradient(circle at 50% 10%, #1e1b4b 0%, #090d16 100%);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 30px 26px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .site-hero-sphere {
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      top: -30px;
+      background: linear-gradient(135deg, #00f0ff, #8b5cf6, #ec4899);
+      border-radius: 50%;
+      filter: blur(55px);
+      opacity: 0.6;
+    }
+
+    /* GitHub Desktop & Pages Panels */
+    .desktop-commit-action-box {
+      background: rgba(18, 24, 38, 0.95);
+      border: 1.5px solid rgba(37, 99, 235, 0.5);
+      border-radius: 24px;
+      padding: 24px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .pages-settings-overlay {
+      background: rgba(13, 17, 23, 0.96);
+      border: 2px solid var(--emerald);
+      border-radius: 24px;
+      padding: 26px 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .pages-live-banner {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.25) 0%, rgba(6, 182, 212, 0.25) 100%);
+      border: 2.5px solid var(--emerald);
+      border-radius: 26px;
+      padding: 30px 26px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 18px;
+      box-shadow: 0 16px 60px rgba(16, 185, 129, 0.35);
+    }
+
+    .live-check-circle {
+      width: 82px;
+      height: 82px;
+      border-radius: 50%;
+      background: var(--emerald);
+      color: #04140c;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 44px;
+      font-weight: 900;
+      box-shadow: 0 0 35px var(--emerald);
+    }
+
+    /* THE SUPER MOUSE POINTER */
+    .super-cursor-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      pointer-events: none;
+      z-index: 9999;
+      will-change: transform;
+    }
+
+    .super-pointer {
+      position: absolute;
+      width: 76px;
+      height: 76px;
+      transform-origin: 0% 0%;
+      filter: drop-shadow(0 14px 26px rgba(0, 0, 0, 0.8));
+      transition: transform 0.08s ease;
+    }
+
+    .super-pointer svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Shockwave Ripples */
+    .click-shockwave {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 44px;
+      height: 44px;
+      margin-top: -22px;
+      margin-left: -22px;
+      border-radius: 50%;
+      border: 6px solid var(--cyan);
+      background: radial-gradient(circle, rgba(0, 240, 255, 0.6) 0%, transparent 70%);
+      pointer-events: none;
+      opacity: 0;
+      transform: scale(0);
+      box-shadow: 0 0 35px var(--cyan);
+      z-index: 9998;
+    }
+
+    .click-shockwave-secondary {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 44px;
+      height: 44px;
+      margin-top: -22px;
+      margin-left: -22px;
+      border-radius: 50%;
+      border: 4px solid var(--purple);
+      pointer-events: none;
+      opacity: 0;
+      transform: scale(0);
+      box-shadow: 0 0 30px var(--purple);
+      z-index: 9997;
+    }
+
+    /* Confetti Particles */
+    .particle {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border-radius: 4px;
+      pointer-events: none;
+      z-index: 9990;
+      opacity: 0;
+    }
+
+    /* iOS Home Indicator Bar & Edge-to-Edge Progress Strip */
+    .ios-home-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9995;
+      pointer-events: none;
+    }
+
+    .ios-indicator-pill {
+      width: 140px;
+      height: 5px;
+      background: rgba(255, 255, 255, 0.45);
+      border-radius: 10px;
+      backdrop-filter: blur(10px);
+    }
+
+    /* Reels / TikTok Style Ultra-Slim Progress Line */
+    .story-progress-strip {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 3.5px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--cyan), var(--purple), var(--pink));
+      box-shadow: 0 0 10px rgba(0, 240, 255, 0.8);
+      z-index: 10001;
+      pointer-events: none;
+      transition: width 0.05s linear;
+    }
+
+    /* Floating Modern Sound Toggle in Top-Right Corner */
+    .phone-audio-pill {
+      position: absolute;
+      top: 10px;
+      right: 28px;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(10, 14, 24, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(20px);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 17px;
+      cursor: pointer;
+      z-index: 10002;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+      transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+    }
+
+    .phone-audio-pill:hover {
+      transform: scale(1.12);
+      border-color: var(--cyan);
+      background: rgba(20, 28, 48, 0.9);
+    }
+
+    /* Tap-to-Play/Pause Central Flash Indicator */
+    .play-state-flash {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.6);
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: rgba(10, 14, 24, 0.8);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(25px);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 34px;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 9999;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .play-state-flash.visible {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    @media (min-aspect-ratio: 9/16) {
+      .player-container {
+        height: 96vh;
+        border-radius: 36px;
+        border: 2px solid rgba(255, 255, 255, 0.18);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- App Wrapper / Phone Player Frame -->
+  <div class="player-container" id="playerContainer">
+    
+    <!-- HYPERFRAMES COMPOSITION ROOT (1080 x 1920, 33s duration) -->
+    <div 
+      id="root" 
+      data-composition-id="main" 
+      data-start="0" 
+      data-duration="33" 
+      data-width="1080" 
+      data-height="1920"
+    >
+      <!-- Background Aurora & Grid -->
+      <div class="aurora-layer"></div>
+      <div class="grid-overlay"></div>
+
+      <!-- Top macOS Desktop Menu Bar -->
+      <div class="macos-menu-bar">
+        <div class="menu-left">
+          <span style="font-size: 22px;"></span>
+          <span style="font-weight: 800; color: #fff;">Antigravity OS</span>
+          <span>File</span>
+          <span>Edit</span>
+          <span>View</span>
+          <span>Develop</span>
+        </div>
+        <div class="menu-right">
+          <span>100% 􀋦</span>
+          <span>􀤆</span>
+          <span>Wed 9:41 AM</span>
+        </div>
+      </div>
+
+      <!-- ==============================================================
+           THE PERSISTENT DESKTOP HOME SCREEN WITH 4 APPS
+           ============================================================== -->
+      <div class="desktop-home-surface" id="desktopHomeSurface">
+        <div class="desktop-header-card">
+          <div class="desktop-time-hero">09:41</div>
+          <div class="desktop-date-hero">Wednesday, October 14 • Developer Desktop</div>
+        </div>
+
+        <div class="desktop-shortcuts-grid">
+          <!-- Antigravity Shortcut -->
+          <div class="desktop-shortcut-card">
+            <div class="shortcut-icon-box" style="background: linear-gradient(135deg, #1e1b4b, #8b5cf6); border: 2px solid var(--purple);">
+              <span>⚡</span>
+            </div>
+            <div class="shortcut-title">Antigravity AI</div>
+            <div class="shortcut-desc">Autonomous Full-Stack AI IDE</div>
+          </div>
+
+          <!-- Project Folder Shortcut -->
+          <div class="desktop-shortcut-card">
+            <div class="shortcut-icon-box" style="background: linear-gradient(135deg, #0369a1, #00f0ff); border: 2px solid var(--cyan);">
+              <span>📁</span>
+            </div>
+            <div class="shortcut-title">peaceful-portfolio</div>
+            <div class="shortcut-desc">Local Project Folder</div>
+          </div>
+
+          <!-- GitHub Desktop Shortcut -->
+          <div class="desktop-shortcut-card">
+            <div class="shortcut-icon-box" style="background: linear-gradient(135deg, #1e293b, #2563eb); border: 2px solid #2563eb;">
+              <span>🐙</span>
+            </div>
+            <div class="shortcut-title">GitHub Desktop</div>
+            <div class="shortcut-desc">Git Repository Publisher</div>
+          </div>
+
+          <!-- Chrome Shortcut -->
+          <div class="desktop-shortcut-card">
+            <div class="shortcut-icon-box" style="background: linear-gradient(135deg, #0f172a, #10b981); border: 2px solid var(--emerald);">
+              <span>🌐</span>
+            </div>
+            <div class="shortcut-title">Google Chrome</div>
+            <div class="shortcut-desc">GitHub Pages Host</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==============================================================
+           THE MACOS FLOATING DOCK (4 MAIN APPS)
+           ============================================================== -->
+      <div class="macos-dock" id="macosDock">
+        <!-- 1. Antigravity AI -->
+        <div class="dock-app-item" id="dockAntigravity">
+          <div class="dock-app-label">Antigravity AI IDE</div>
+          <div class="dock-app-icon" style="background: linear-gradient(135deg, #1e1b4b, #8b5cf6);">
+            <span>⚡</span>
+          </div>
+          <div class="dock-active-dot" id="dotAntigravity"></div>
+        </div>
+
+        <!-- 2. Folders / Finder -->
+        <div class="dock-app-item" id="dockFolder">
+          <div class="dock-app-label">Project Folder</div>
+          <div class="dock-app-icon" style="background: linear-gradient(135deg, #0369a1, #00f0ff);">
+            <span>📁</span>
+          </div>
+          <div class="dock-active-dot" id="dotFolder"></div>
+        </div>
+
+        <!-- 3. GitHub Desktop -->
+        <div class="dock-app-item" id="dockGitHubDesktop">
+          <div class="dock-app-label">GitHub Desktop</div>
+          <div class="dock-app-icon" style="background: linear-gradient(135deg, #0f172a, #2563eb);">
+            <span>🐙</span>
+          </div>
+          <div class="dock-active-dot" id="dotGitHubDesktop"></div>
+        </div>
+
+        <!-- 4. Google Chrome -->
+        <div class="dock-app-item" id="dockChrome">
+          <div class="dock-app-label">Google Chrome</div>
+          <div class="dock-app-icon" style="background: linear-gradient(135deg, #ea4335, #fbbc05, #34a853, #4285f4);">
+            <span>🌐</span>
+          </div>
+          <div class="dock-active-dot" id="dotChrome"></div>
+        </div>
+      </div>
+
+      <!-- ==============================================================
+           APP WINDOW 1: ANTIGRAVITY AI IDE (OPENED BY CLICKING DOCK)
+           ============================================================== -->
+      <div class="window-modal-scene" id="windowAntigravity">
+        <div class="window-card">
+          <div class="window-header">
+            <div class="window-dots"><div class="w-dot w-red"></div><div class="w-dot w-yellow"></div><div class="w-dot w-green"></div></div>
+            <div class="window-title"><span>Antigravity Software • peaceful-portfolio</span></div>
+            <span style="font-size: 18px; font-weight: 700; color: var(--purple); background: rgba(139, 92, 246, 0.2); padding: 6px 16px; border-radius: 12px;">● Agent Active</span>
+          </div>
+          <div class="window-body">
+            <div class="software-preview-backdrop">
+              <img src="assets/antigravity_ide.jpg" alt="Real Antigravity IDE Software" class="software-screenshot-img" />
+              <div class="software-glass-overlay"></div>
+            </div>
+
+            <!-- Active Prompt Console -->
+            <div class="ai-prompt-box">
+              <div style="display: flex; align-items: center; gap: 14px; font-size: 22px; font-weight: 800; color: var(--cyan);">
+                <span>⚡</span><span>AI PROMPT CONSOLE</span>
+              </div>
+              <div style="font-size: 28px; font-weight: 700; color: #fff; min-height: 76px;">
+                <span id="promptText"></span><span style="display: inline-block; width: 4px; height: 30px; background: var(--cyan); vertical-align: middle;"></span>
+              </div>
+              <div style="display: flex; justify-content: flex-end; width: 100%;">
+                <button class="isolated-action-btn btn-purple" id="btnGenerate">
+                  <span>⚡</span><span>Generate &amp; Build</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Code Generation Progress Checklist -->
+            <div class="code-gen-checklist">
+              <div class="gen-item" id="genItem1"><span>⚡</span><span>Generating index.html (3D Canvas &amp; Structure)...</span></div>
+              <div class="gen-item" id="genItem2"><span>🎨</span><span>Generating style.css (Neon Glassmorphic Design)...</span></div>
+              <div class="gen-item" id="genItem3"><span>🚀</span><span>Generating app.js (Physics animations &amp; controls)...</span></div>
+            </div>
+
+            <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+              <div class="gen-complete-badge" id="badgeGenComplete">
+                <span>✓</span><span>Code Generation Complete (3/3 Files)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==============================================================
+           APP WINDOW 2: MACOS FINDER & LOCALHOST SITE (OPENED BY DOCK)
+           ============================================================== -->
+      <div class="window-modal-scene" id="windowFinder">
+        <div class="window-card">
+          <div class="window-header">
+            <div class="window-dots"><div class="w-dot w-red"></div><div class="w-dot w-yellow"></div><div class="w-dot w-green"></div></div>
+            <div class="window-title"><span>macOS Finder • ~/Documents/peaceful-portfolio</span></div>
+            <span style="font-size: 18px; font-weight: 700; color: var(--cyan); background: rgba(0, 240, 255, 0.15); padding: 6px 16px; border-radius: 12px;">📁 4 Items</span>
+          </div>
+          <div class="window-body">
+            <div class="software-preview-backdrop">
+              <img src="assets/macos_finder.jpg" alt="Real macOS Finder Folder" class="software-screenshot-img" />
+              <div class="software-glass-overlay"></div>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 20px; padding: 16px 24px;">
+              <div style="display: flex; align-items: center; gap: 14px; font-family: 'JetBrains Mono', monospace; font-size: 22px;">
+                <span style="color: var(--cyan);">🌐</span><span style="color: #fff; font-weight: 700;">index.html selected</span>
+              </div>
+              <button class="isolated-action-btn btn-cyan" id="btnLaunchLocalhost">
+                <span>🚀</span><span>Open in Chrome (:3000)</span>
+              </button>
+            </div>
+
+            <!-- Live Localhost Preview -->
+            <div class="site-preview-screen" id="sitePreviewScreen" style="opacity: 0; transform: scale(0.92);">
+              <div class="site-hero-sphere" id="siteSphere"></div>
+              <div style="width: 100%; display: flex; justify-content: space-between; align-items: center; z-index: 2; margin-bottom: 22px;">
+                <div style="font-size: 28px; font-weight: 900; color: var(--cyan);">CYBER.PORTFOLIO</div>
+                <button class="isolated-action-btn btn-pill-accent" id="btnToggleTheme">
+                  <span>✨ Neon Theme</span>
+                </button>
+              </div>
+              <div style="font-size: 46px; font-weight: 900; text-align: center; margin-bottom: 18px; z-index: 2;">CREATIVE DESIGNER<br/>&amp; AI DEVELOPER</div>
+              <div style="display: flex; gap: 14px; z-index: 2;">
+                <span style="padding: 8px 18px; border-radius: 20px; font-size: 19px; font-weight: 700; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: var(--cyan);">React 19</span>
+                <span style="padding: 8px 18px; border-radius: 20px; font-size: 19px; font-weight: 700; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: var(--emerald);">localhost:3000</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==============================================================
+           APP WINDOW 3: GITHUB DESKTOP (OPENED BY DOCK)
+           ============================================================== -->
+      <div class="window-modal-scene" id="windowGitHubDesktop">
+        <div class="window-card">
+          <div class="window-header">
+            <div class="window-dots"><div class="w-dot w-red"></div><div class="w-dot w-yellow"></div><div class="w-dot w-green"></div></div>
+            <div class="window-title"><span>GitHub Desktop • Current Repository: peaceful-portfolio</span></div>
+            <span style="font-size: 18px; font-weight: 700; color: #93c5fd; background: rgba(37, 99, 235, 0.2); padding: 6px 16px; border-radius: 12px;">● Branch: main</span>
+          </div>
+          <div class="window-body">
+            <div class="software-preview-backdrop">
+              <img src="assets/github_desktop.jpg" alt="Real GitHub Desktop Software" class="software-screenshot-img" />
+              <div class="software-glass-overlay"></div>
+            </div>
+
+            <div class="desktop-commit-action-box">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div style="font-family: 'JetBrains Mono', monospace; font-size: 22px; color: #93c5fd; font-weight: 700;">
+                  <span>3 Staged Files: index.html, style.css, app.js</span>
+                </div>
+                <span style="font-size: 18px; color: var(--emerald); font-weight: 700;">✓ Ready to Publish</span>
+              </div>
+              <div style="background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 16px; padding: 18px 22px; font-family: 'JetBrains Mono', monospace; font-size: 22px; color: #fff;">
+                <span>feat: launch awesome portfolio website 🚀</span>
+              </div>
+              <button class="isolated-action-btn btn-gh-desktop" id="btnPublishDesktop" style="width: 100%;">
+                <span>🚀</span><span>Publish repository to GitHub</span>
+              </button>
+            </div>
+
+            <div id="bannerDesktopPublish" style="background: rgba(37, 99, 235, 0.2); border: 1.5px solid #2563eb; border-radius: 18px; padding: 16px 22px; display: flex; align-items: center; gap: 14px; font-family: 'JetBrains Mono', monospace; font-size: 21px; color: #93c5fd; opacity: 0;">
+              <span>✓</span><span>Pushing to github.com/developer/peaceful-portfolio... 100% Done!</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==============================================================
+           APP WINDOW 4: GOOGLE CHROME GITHUB PAGES (OPENED BY DOCK)
+           ============================================================== -->
+      <div class="window-modal-scene" id="windowChromePages">
+        <div class="window-card">
+          <div class="window-header">
+            <div class="window-dots"><div class="w-dot w-red"></div><div class="w-dot w-yellow"></div><div class="w-dot w-green"></div></div>
+            <div class="window-title"><span>Google Chrome • github.com/developer/portfolio/settings/pages</span></div>
+            <span style="font-size: 18px; font-weight: 700; color: var(--emerald); background: rgba(16, 185, 129, 0.2); padding: 6px 16px; border-radius: 12px;">● GitHub Pages Live</span>
+          </div>
+          <div class="window-body">
+            <div class="software-preview-backdrop">
+              <img src="assets/github_pages.jpg" alt="Real GitHub Pages Software" class="software-screenshot-img" />
+              <div class="software-glass-overlay"></div>
+            </div>
+
+            <div class="pages-settings-overlay" id="pagesConfigBox">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 24px; font-weight: 700;">Build Source</span>
+                <span style="font-size: 20px; font-family: 'JetBrains Mono', monospace; color: var(--cyan);">Deploy from a branch</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 24px; font-weight: 700;">Active Branch</span>
+                <span style="font-size: 20px; font-family: 'JetBrains Mono', monospace; color: var(--emerald); background: rgba(16, 185, 129, 0.15); padding: 6px 16px; border-radius: 12px;">main / (root)</span>
+              </div>
+              <button class="isolated-action-btn btn-gh-green" id="btnDeployPages" style="width: 100%; justify-content: center;">
+                <span>✓</span><span>Save &amp; Deploy to GitHub Pages</span>
+              </button>
+            </div>
+
+            <!-- Live Site Announcement Card with Confetti Target -->
+            <div class="pages-live-banner" id="pagesLiveBanner" style="opacity: 0; transform: scale(0.9);">
+              <div class="live-check-circle">✓</div>
+              <h3 style="font-size: 34px; font-weight: 900; color: #fff;">Your Site Is Live Globally!</h3>
+              <p style="font-size: 20px; color: #cbd5e1; max-width: 600px;">GitHub Pages has deployed your portfolio to edge CDN with free HTTPS.</p>
+              
+              <button class="isolated-action-btn btn-live-url" id="btnOpenLiveSite">
+                <span>🔗</span><span>https://developer.github.io/portfolio/</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Super Mouse Pointer Protagonist -->
+      <div class="super-cursor-wrapper" id="cursorWrapper">
+        <div class="super-pointer" id="cursorPointer">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g filter="url(#glow)">
+              <path d="M6 6L28 58L38 36L60 26L6 6Z" fill="#FFFFFF" stroke="#07090E" stroke-width="4.5" stroke-linejoin="round"/>
+              <path d="M12 12L27 47L34 33L48 27L12 12Z" fill="url(#cursorGradient)"/>
+            </g>
+            <defs>
+              <linearGradient id="cursorGradient" x1="12" y1="12" x2="48" y2="47" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#FFFFFF"/>
+                <stop offset="0.7" stop-color="#E2E8F0"/>
+                <stop offset="1" stop-color="#CBD5E1"/>
+              </linearGradient>
+              <filter id="glow" x="-8" y="-8" width="80" height="80" filterUnits="userSpaceOnUse">
+                <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000000" flood-opacity="0.6"/>
+              </filter>
+            </defs>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Shockwave Click Pulse Rings -->
+      <div class="click-shockwave" id="shockwavePrimary"></div>
+      <div class="click-shockwave-secondary" id="shockwaveSecondary"></div>
+
+    </div>
+
+    <!-- Edge-to-Edge Slim Progress Line (Reels / TikTok Style) -->
+    <div class="story-progress-strip" id="storyProgressStrip"></div>
+
+    <!-- Authentic iOS Home Indicator Bar -->
+    <div class="ios-home-bar">
+      <div class="ios-indicator-pill"></div>
+    </div>
+
+    <!-- Floating Top-Right Audio Pill -->
+    <button class="phone-audio-pill" id="btnSoundToggle" title="Toggle Sound">
+      <span id="soundIcon">🔊</span>
+    </button>
+
+    <!-- Tap-to-Play/Pause Flash Icon -->
+    <div class="play-state-flash" id="playStateFlash">▶</div>
+
+  </div>
+
+  <!-- HYPERFRAMES TIMELINE, SOUND SYNTHESIZER & LAUNCHPAD ORCHESTRATION -->
+  <script>
+    // -------------------------------------------------------------
+    // 1. WEB AUDIO API SOUND SYNTHESIZER
+    // -------------------------------------------------------------
+    let audioCtx = null;
+    let soundEnabled = true;
+
+    function initAudio() {
+      if (!audioCtx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (AudioContext) {
+          audioCtx = new AudioContext();
+        }
+      }
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+    }
+
+    function sfxMouseClick() {
+      if (!soundEnabled || !audioCtx) return;
+      const now = audioCtx.currentTime;
+
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(1400, now);
+      osc.frequency.exponentialRampToValueAtTime(180, now + 0.025);
+      gain.gain.setValueAtTime(0.4, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.025);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start(now);
+      osc.stop(now + 0.03);
+
+      const snapOsc = audioCtx.createOscillator();
+      const snapGain = audioCtx.createGain();
+      snapOsc.type = 'sine';
+      snapOsc.frequency.setValueAtTime(2800, now);
+      snapOsc.frequency.exponentialRampToValueAtTime(600, now + 0.015);
+      snapGain.gain.setValueAtTime(0.3, now);
+      snapGain.gain.exponentialRampToValueAtTime(0.001, now + 0.015);
+      snapOsc.connect(snapGain);
+      snapGain.connect(audioCtx.destination);
+      snapOsc.start(now);
+      snapOsc.stop(now + 0.02);
+    }
+
+    function sfxWhoosh() {
+      if (!soundEnabled || !audioCtx) return;
+      const now = audioCtx.currentTime;
+      const bufferSize = Math.floor(audioCtx.sampleRate * 0.28);
+      const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < bufferSize; i++) {
+        data[i] = Math.random() * 2 - 1;
+      }
+      const noise = audioCtx.createBufferSource();
+      noise.buffer = buffer;
+
+      const filter = audioCtx.createBiquadFilter();
+      filter.type = 'bandpass';
+      filter.frequency.setValueAtTime(320, now);
+      filter.frequency.exponentialRampToValueAtTime(1800, now + 0.14);
+      filter.frequency.exponentialRampToValueAtTime(250, now + 0.28);
+      filter.Q.value = 3;
+
+      const gain = audioCtx.createGain();
+      gain.gain.setValueAtTime(0.01, now);
+      gain.gain.linearRampToValueAtTime(0.22, now + 0.12);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.28);
+
+      noise.connect(filter);
+      filter.connect(gain);
+      gain.connect(audioCtx.destination);
+      noise.start(now);
+      noise.stop(now + 0.3);
+    }
+
+    function sfxKeypress() {
+      if (!soundEnabled || !audioCtx) return;
+      const now = audioCtx.currentTime;
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      const freq = 1100 + Math.random() * 500;
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, now);
+      gain.gain.setValueAtTime(0.09, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.018);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start(now);
+      osc.stop(now + 0.02);
+    }
+
+    function sfxSuccessChime() {
+      if (!soundEnabled || !audioCtx) return;
+      const now = audioCtx.currentTime;
+      const notes = [659.25, 880.00];
+      notes.forEach((freq, idx) => {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        const startTime = now + idx * 0.12;
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, startTime);
+        gain.gain.setValueAtTime(0.25, startTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.5);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(startTime);
+        osc.stop(startTime + 0.55);
+      });
+    }
+
+    function sfxCelebrationFanfare() {
+      if (!soundEnabled || !audioCtx) return;
+      const now = audioCtx.currentTime;
+      const chord = [523.25, 659.25, 783.99, 1046.50];
+      chord.forEach((freq, idx) => {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        const startTime = now + idx * 0.08;
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(freq, startTime);
+        gain.gain.setValueAtTime(0.24, startTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.9);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(startTime);
+        osc.stop(startTime + 0.95);
+      });
+    }
+
+    // -------------------------------------------------------------
+    // 2. ROOT SCALING & RESPONSIVENESS (1080 x 1920)
+    // -------------------------------------------------------------
+    function resizeRoot() {
+      const container = document.getElementById('playerContainer');
+      const root = document.getElementById('root');
+      const cw = container.clientWidth;
+      const ch = container.clientHeight;
+      const scale = Math.min(cw / 1080, ch / 1920);
+      root.style.transform = `scale(${scale})`;
+      root.style.left = `${(cw - 1080 * scale) / 2}px`;
+      root.style.top = `${(ch - 1920 * scale) / 2}px`;
+    }
+    window.addEventListener('resize', resizeRoot);
+    resizeRoot();
+
+    // -------------------------------------------------------------
+    // 3. HYPERFRAMES COMPOSITION TIMELINE (33s)
+    // -------------------------------------------------------------
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+
+    const cursor = document.querySelector('#cursorWrapper');
+    const pointer = document.querySelector('#cursorPointer');
+    const shockwavePrimary = document.querySelector('#shockwavePrimary');
+    const shockwaveSecondary = document.querySelector('#shockwaveSecondary');
+
+    // Helper: Trigger Super Click strictly on an element
+    function addClick(timeline, atTime, targetX, targetY, targetSelector, hoverClass, pressClass, clickSfx) {
+      const el = document.querySelector(targetSelector);
+
+      timeline.to(cursor, {
+        x: targetX,
+        y: targetY,
+        duration: 0.8,
+        ease: "power3.out"
+      }, atTime);
+
+      timeline.add(() => sfxWhoosh(), atTime + 0.1);
+
+      // Hover
+      timeline.add(() => {
+        if (el && hoverClass) el.classList.add(hoverClass);
+      }, atTime + 0.7);
+
+      // Mouse Press Down
+      timeline.to(pointer, {
+        scale: 0.82,
+        rotation: -6,
+        duration: 0.08,
+        ease: "power2.in"
+      }, atTime + 0.8);
+
+      // Target Press Down
+      timeline.add(() => {
+        if (el) {
+          if (hoverClass) el.classList.remove(hoverClass);
+          if (pressClass) el.classList.add(pressClass);
+        }
+        sfxMouseClick();
+
+        shockwavePrimary.style.left = targetX + "px";
+        shockwavePrimary.style.top = targetY + "px";
+        shockwaveSecondary.style.left = targetX + "px";
+        shockwaveSecondary.style.top = targetY + "px";
+      }, atTime + 0.88);
+
+      // Shockwaves
+      timeline.fromTo(shockwavePrimary, 
+        { scale: 0, opacity: 0.95 },
+        { scale: 3.5, opacity: 0, duration: 0.55, ease: "power2.out" },
+        atTime + 0.88
+      );
+      timeline.fromTo(shockwaveSecondary, 
+        { scale: 0, opacity: 0.85 },
+        { scale: 2.8, opacity: 0, duration: 0.45, ease: "power3.out" },
+        atTime + 0.92
+      );
+
+      // Pointer Springs Back
+      timeline.to(pointer, {
+        scale: 1,
+        rotation: 0,
+        duration: 0.22,
+        ease: "back.out(2)"
+      }, atTime + 0.88);
+
+      // Target Springs Back
+      timeline.add(() => {
+        if (el && pressClass) el.classList.remove(pressClass);
+        if (clickSfx) clickSfx();
+      }, atTime + 0.96);
+    }
+
+    // Initial setup
+    gsap.set(cursor, { x: 950, y: 1950 });
+
+    /* =========================================================================
+       ACT 1: DESKTOP HOME SCREEN ➔ LAUNCH ANTIGRAVITY (0s - 4.5s)
+       ========================================================================= */
+    // Cursor glides to the Antigravity App Icon in the Dock (Center: x: 340, y: 1805)
+    addClick(tl, 0.8, 340, 1805, "#dockAntigravity", "dock-hovered", "dock-clicked", sfxSuccessChime);
+
+    // Antigravity Window Zooms Open from Dock icon
+    tl.to("#windowAntigravity", {
+      opacity: 1,
+      scale: 1,
+      duration: 0.8,
+      ease: "power3.out"
+    }, 2.0);
+
+    /* =========================================================================
+       ACT 2: ANTIGRAVITY IDE ➔ CODE GENERATING & COMPLETE (4.5s - 11.0s)
+       ========================================================================= */
+    const promptPhrases = "Create responsive 3D cyberpunk portfolio with animations";
+    const promptEl = document.getElementById("promptText");
+    let lastKeyCount = 0;
+
+    tl.to({}, {
+      duration: 1.4,
+      onUpdate: function() {
+        const progress = this.progress();
+        const currentLength = Math.floor(progress * promptPhrases.length);
+        promptEl.textContent = promptPhrases.substring(0, currentLength);
+        if (currentLength > lastKeyCount) {
+          sfxKeypress();
+          lastKeyCount = currentLength;
+        }
+      }
+    }, 2.8);
+
+    // Click on "#btnGenerate" inside Antigravity (Center: x: 740, y: 1110)
+    addClick(tl, 4.4, 740, 1110, "#btnGenerate", "btn-hovered", "btn-pressed", sfxSuccessChime);
+
+    // Code Generation Checklist Animation
+    tl.add(() => { document.getElementById("genItem1").classList.add("active"); }, 5.4);
+    tl.add(() => {
+      document.getElementById("genItem1").classList.remove("active");
+      document.getElementById("genItem1").classList.add("done");
+      document.getElementById("genItem2").classList.add("active");
+      sfxKeypress();
+    }, 6.2);
+    tl.add(() => {
+      document.getElementById("genItem2").classList.remove("active");
+      document.getElementById("genItem2").classList.add("done");
+      document.getElementById("genItem3").classList.add("active");
+      sfxKeypress();
+    }, 7.0);
+    tl.add(() => {
+      document.getElementById("genItem3").classList.remove("active");
+      document.getElementById("genItem3").classList.add("done");
+      sfxSuccessChime();
+    }, 7.8);
+
+    tl.to("#badgeGenComplete", {
+      opacity: 1,
+      scale: 1,
+      duration: 0.4,
+      ease: "back.out(1.5)"
+    }, 8.0);
+
+    // Antigravity Window Minimizes back to Desktop
+    tl.to("#windowAntigravity", {
+      opacity: 0,
+      scale: 0.2,
+      y: 300,
+      duration: 0.6,
+      ease: "power3.in"
+    }, 9.8);
+
+    /* =========================================================================
+       ACT 3: DESKTOP ➔ LAUNCH FOLDER & RUN LOCALHOST SITE (11.0s - 18.0s)
+       ========================================================================= */
+    // Cursor glides to the Folders icon in the Dock (Center: x: 475, y: 1805)
+    addClick(tl, 10.6, 475, 1805, "#dockFolder", "dock-hovered", "dock-clicked", sfxWhoosh);
+
+    // Finder Window Zooms Open
+    tl.to("#windowFinder", {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      duration: 0.8,
+      ease: "power3.out"
+    }, 11.8);
+
+    // Click on "#btnLaunchLocalhost" inside Finder (Center: x: 740, y: 760)
+    addClick(tl, 12.8, 740, 760, "#btnLaunchLocalhost", "btn-hovered", "btn-pressed", sfxSuccessChime);
+
+    // Localhost preview reveals
+    tl.to("#sitePreviewScreen", {
+      opacity: 1,
+      scale: 1,
+      duration: 0.6,
+      ease: "power3.out"
+    }, 13.9);
+
+    // Click theme toggle on local site (Center: x: 820, y: 980)
+    addClick(tl, 14.8, 820, 980, "#btnToggleTheme", "btn-hovered", "btn-pressed", sfxSuccessChime);
+
+    tl.to("#siteSphere", {
+      scale: 1.45,
+      filter: "blur(35px)",
+      duration: 0.5,
+      yoyo: true,
+      repeat: 1
+    }, 15.8);
+
+    // Finder Window Minimizes back to Desktop
+    tl.to("#windowFinder", {
+      opacity: 0,
+      scale: 0.2,
+      y: 300,
+      duration: 0.6,
+      ease: "power3.in"
+    }, 17.2);
+
+    /* =========================================================================
+       ACT 4: DESKTOP ➔ LAUNCH GITHUB DESKTOP & PUBLISH (18.0s - 25.0s)
+       ========================================================================= */
+    // Cursor glides to the GitHub Desktop icon in the Dock (Center: x: 610, y: 1805)
+    addClick(tl, 18.0, 610, 1805, "#dockGitHubDesktop", "dock-hovered", "dock-clicked", sfxWhoosh);
+
+    // GitHub Desktop Window Zooms Open
+    tl.to("#windowGitHubDesktop", {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      duration: 0.8,
+      ease: "power3.out"
+    }, 19.2);
+
+    // Click on "#btnPublishDesktop" (Center: x: 540, y: 1300)
+    addClick(tl, 20.3, 540, 1300, "#btnPublishDesktop", "btn-hovered", "btn-pressed", sfxSuccessChime);
+
+    tl.to("#bannerDesktopPublish", {
+      opacity: 1,
+      duration: 0.5
+    }, 21.5);
+
+    // GitHub Desktop Minimizes back to Desktop
+    tl.to("#windowGitHubDesktop", {
+      opacity: 0,
+      scale: 0.2,
+      y: 300,
+      duration: 0.6,
+      ease: "power3.in"
+    }, 24.2);
+
+    /* =========================================================================
+       ACT 5: DESKTOP ➔ LAUNCH CHROME & DEPLOY GITHUB PAGES (25.0s - 33.0s)
+       ========================================================================= */
+    // Cursor glides to the Google Chrome icon in the Dock (Center: x: 745, y: 1805)
+    addClick(tl, 24.8, 745, 1805, "#dockChrome", "dock-hovered", "dock-clicked", sfxWhoosh);
+
+    // Chrome GitHub Pages Window Zooms Open
+    tl.to("#windowChromePages", {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      duration: 0.8,
+      ease: "power3.out"
+    }, 26.0);
+
+    // Click on "#btnDeployPages" (Center: x: 540, y: 1140)
+    addClick(tl, 27.0, 540, 1140, "#btnDeployPages", "btn-hovered", "btn-pressed", sfxSuccessChime);
+
+    tl.to("#pagesConfigBox", {
+      opacity: 0.2,
+      scale: 0.95,
+      duration: 0.4
+    }, 28.2);
+
+    tl.to("#pagesLiveBanner", {
+      opacity: 1,
+      scale: 1,
+      duration: 0.7,
+      ease: "back.out(1.6)"
+    }, 28.4);
+
+    // Final Celebratory Click on "#btnOpenLiveSite" (Center: x: 540, y: 1470)
+    addClick(tl, 29.3, 540, 1470, "#btnOpenLiveSite", "btn-hovered", "btn-pressed", () => {
+      sfxCelebrationFanfare();
+      createConfettiBurst(540, 1470);
+    });
+
+    // Cursor takes graceful exit
+    tl.to(cursor, {
+      x: 1050,
+      y: 2000,
+      duration: 1.2,
+      ease: "power2.in"
+    }, 31.4);
+
+    // REGISTER HYPERFRAMES COMPOSITION TIMELINE
+    window.__timelines["main"] = tl;
+
+    /* =========================================================================
+       4. MODERN PHONE INTERACTION (TAP TO PLAY/PAUSE, TOP AUDIO PILL, PROGRESS STRIP)
+       ========================================================================= */
+    const playerContainer = document.getElementById("playerContainer");
+    const playStateFlash = document.getElementById("playStateFlash");
+    const storyProgressStrip = document.getElementById("storyProgressStrip");
+    const btnSoundToggle = document.getElementById("btnSoundToggle");
+    const soundIcon = document.getElementById("soundIcon");
+
+    let isPlaying = true;
+    tl.play();
+
+    document.addEventListener("click", initAudio, { once: false });
+
+    // Floating Audio Pill Toggle
+    btnSoundToggle.addEventListener("click", (e) => {
+      e.stopPropagation();
+      initAudio();
+      soundEnabled = !soundEnabled;
+      soundIcon.textContent = soundEnabled ? "🔊" : "🔇";
+      btnSoundToggle.style.color = soundEnabled ? "#fff" : "var(--pink)";
+    });
+
+    // Tap Anywhere on Screen to Toggle Play/Pause (Reels / TikTok Style)
+    playerContainer.addEventListener("click", (e) => {
+      if (e.target.closest("#btnSoundToggle")) return;
+      initAudio();
+      if (isPlaying) {
+        tl.pause();
+        playStateFlash.textContent = "❚❚";
+      } else {
+        tl.play();
+        playStateFlash.textContent = "▶";
+      }
+      isPlaying = !isPlaying;
+      playStateFlash.classList.add("visible");
+      setTimeout(() => playStateFlash.classList.remove("visible"), 400);
+    });
+
+    // Spacebar to Toggle Play/Pause
+    document.addEventListener("keydown", (e) => {
+      if (e.code === "Space") {
+        e.preventDefault();
+        initAudio();
+        if (isPlaying) {
+          tl.pause();
+          playStateFlash.textContent = "❚❚";
+        } else {
+          tl.play();
+          playStateFlash.textContent = "▶";
+        }
+        isPlaying = !isPlaying;
+        playStateFlash.classList.add("visible");
+        setTimeout(() => playStateFlash.classList.remove("visible"), 400);
+      }
+    });
+
+    // Slim Edge-to-Edge Progress Strip Update
+    tl.eventCallback("onUpdate", () => {
+      const progress = tl.progress();
+      storyProgressStrip.style.width = (progress * 100) + "%";
+    });
+
+    tl.eventCallback("onComplete", () => {
+      tl.restart();
+    });
+
+    function createConfettiBurst(originX, originY) {
+      const colors = ['#00f0ff', '#8b5cf6', '#ec4899', '#10b981', '#f59e0b', '#ffffff'];
+      for (let i = 0; i < 40; i++) {
+        const p = document.createElement("div");
+        p.className = "particle";
+        p.style.background = colors[i % colors.length];
+        p.style.left = originX + "px";
+        p.style.top = originY + "px";
+        document.getElementById("root").appendChild(p);
+
+        const angle = (Math.PI * 2 * i) / 40;
+        const dist = 120 + Math.random() * 320;
+        const targetX = originX + Math.cos(angle) * dist;
+        const targetY = originY + Math.sin(angle) * dist;
+
+        gsap.to(p, {
+          x: targetX - originX,
+          y: targetY - originY,
+          opacity: 1,
+          scale: 0.8 + Math.random() * 0.9,
+          rotation: Math.random() * 360,
+          duration: 0.16,
+          ease: "power2.out",
+          onComplete: () => {
+            gsap.to(p, {
+              y: "+=160",
+              opacity: 0,
+              duration: 0.9 + Math.random() * 0.5,
+              ease: "power2.in",
+              onComplete: () => p.remove()
+            });
+          }
+        });
+      }
+    }
+  </script>
+</body>
+</html>
