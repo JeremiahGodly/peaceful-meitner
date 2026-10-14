@@ -6,7 +6,7 @@
   <title>Desktop Home ➔ Antigravity ➔ Finder ➔ GitHub Desktop ➔ Chrome Pages (HyperFrames 9:16)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
   <style>
     :root {
@@ -526,29 +526,268 @@
       transform: scale(0.9);
     }
 
-    /* Localhost & Browser Preview */
+    /* 8-Bit Colourful Arcade Website Game */
     .site-preview-screen {
       flex: 1;
-      border-radius: 24px;
-      background: radial-gradient(circle at 50% 10%, #1e1b4b 0%, #090d16 100%);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      padding: 30px 26px;
+      border-radius: 26px;
+      background: #0d0914;
+      border: 2px solid rgba(255, 0, 127, 0.4);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 30px rgba(255, 0, 127, 0.25);
       display: flex;
       flex-direction: column;
-      align-items: center;
       position: relative;
       overflow: hidden;
+      padding: 0;
     }
 
-    .site-hero-sphere {
+    /* Browser Header Tab & Address Bar */
+    .arcade-browser-bar {
+      height: 60px;
+      background: rgba(16, 12, 28, 0.95);
+      border-bottom: 2px solid rgba(255, 255, 255, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 18px;
+      flex-shrink: 0;
+      gap: 14px;
+    }
+
+    .arcade-tab {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 0, 127, 0.18);
+      border: 1px solid rgba(255, 0, 127, 0.5);
+      border-radius: 10px;
+      padding: 6px 14px;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 13px;
+      color: #ff66cc;
+      letter-spacing: 0.5px;
+    }
+
+    .arcade-url-pill {
+      flex: 1;
+      max-width: 580px;
+      background: rgba(0, 0, 0, 0.65);
+      border: 1px solid rgba(0, 240, 255, 0.35);
+      border-radius: 12px;
+      padding: 6px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 16px;
+      color: #cbd5e1;
+    }
+
+    /* 8-Bit Arcade Scoreboard HUD */
+    .arcade-hud-bar {
+      background: rgba(8, 4, 18, 0.95);
+      border-bottom: 2px solid #ff007f;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 14px;
+      flex-shrink: 0;
+      box-shadow: 0 4px 18px rgba(255, 0, 127, 0.25);
+    }
+
+    .hud-stat-box {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .hud-label {
+      font-size: 10px;
+      color: #94a3b8;
+    }
+
+    .hud-val-gold {
+      color: #ffd700;
+      text-shadow: 0 0 8px rgba(255, 215, 0, 0.7);
+    }
+    .hud-val-cyan {
+      color: #00f0ff;
+      text-shadow: 0 0 8px rgba(0, 240, 255, 0.7);
+    }
+    .hud-val-pink {
+      color: #ff007f;
+      text-shadow: 0 0 8px rgba(255, 0, 127, 0.7);
+    }
+
+    /* 8-Bit Game Stage World */
+    .arcade-game-stage {
+      flex: 1;
+      position: relative;
+      background: linear-gradient(180deg, #13032b 0%, #3b0764 36%, #9d174d 70%, #ea580c 100%);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* CRT Scanlines Overlay */
+    .arcade-crt-overlay {
       position: absolute;
-      width: 320px;
-      height: 320px;
-      top: -30px;
-      background: linear-gradient(135deg, #00f0ff, #8b5cf6, #ec4899);
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.18) 0px,
+        rgba(0, 0, 0, 0.18) 2px,
+        transparent 2px,
+        transparent 4px
+      );
+      pointer-events: none;
+      z-index: 25;
+    }
+
+    /* 8-Bit Pixel Sun */
+    .pixel-sun {
+      position: absolute;
+      width: 140px;
+      height: 140px;
+      right: 70px;
+      top: 40px;
+      background: radial-gradient(circle, #fde047 30%, #f97316 70%, #ec4899 100%);
       border-radius: 50%;
-      filter: blur(55px);
-      opacity: 0.6;
+      box-shadow: 0 0 50px rgba(249, 115, 22, 0.8), 0 0 100px rgba(236, 72, 153, 0.5);
+      z-index: 2;
+    }
+
+    /* Pixel Cloud */
+    .pixel-cloud {
+      position: absolute;
+      z-index: 3;
+      opacity: 0.85;
+    }
+
+    /* Floating Brick Platform */
+    .floating-brick-platform {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      z-index: 8;
+    }
+
+    .pixel-brick {
+      width: 48px;
+      height: 48px;
+      background: #7c2d12;
+      border: 3px solid #ea580c;
+      box-shadow: inset 0 0 0 2px #f97316, 0 6px 14px rgba(0, 0, 0, 0.6);
+      border-radius: 4px;
+    }
+
+    .pixel-brick-stone {
+      background: #334155 !important;
+      border-color: #64748b !important;
+      box-shadow: inset 0 0 0 2px #94a3b8 !important;
+    }
+
+    /* Ground Grid Platform */
+    .ground-grid-platform {
+      position: relative;
+      height: 96px;
+      width: 100%;
+      background: linear-gradient(180deg, #1e1b4b 0%, #030712 100%);
+      border-top: 4px solid #00f0ff;
+      box-shadow: 0 -8px 24px rgba(0, 240, 255, 0.4);
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ground-neon-tiles {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(to right, rgba(0, 240, 255, 0.25) 2px, transparent 2px),
+        linear-gradient(to bottom, rgba(236, 72, 153, 0.25) 2px, transparent 2px);
+      background-size: 32px 32px;
+    }
+
+    /* Floating Score Popup */
+    .retro-floating-score {
+      position: absolute;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 24px;
+      color: #ffd700;
+      text-shadow: 0 0 12px rgba(255, 215, 0, 0.9), 2px 2px 0 #000;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 20;
+    }
+
+    /* Arcade Action Control Bar */
+    .arcade-actions-bar {
+      position: absolute;
+      bottom: 18px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      z-index: 30;
+      padding: 0 20px;
+    }
+
+    .btn-arcade-jump {
+      background: linear-gradient(135deg, #ff007f 0%, #7928ca 100%);
+      border: 3px solid #ffd700;
+      box-shadow: 0 12px 35px rgba(255, 0, 127, 0.6), inset 0 2px 2px rgba(255, 255, 255, 0.4);
+      font-family: 'Press Start 2P', monospace;
+      font-size: 17px;
+      letter-spacing: 0.5px;
+      color: #fff;
+    }
+
+    .btn-arcade-jump:hover, .btn-arcade-jump.btn-hovered {
+      box-shadow: 0 16px 45px rgba(255, 215, 0, 0.8), inset 0 2px 4px #fff;
+      transform: scale(1.05);
+    }
+
+    .btn-arcade-mode {
+      background: linear-gradient(135deg, #0284c7 0%, #00f0ff 100%);
+      border: 2px solid #ffffff;
+      box-shadow: 0 10px 28px rgba(0, 240, 255, 0.5);
+      font-family: 'Press Start 2P', monospace;
+      font-size: 15px;
+      color: #041021;
+    }
+
+    /* Floating Tap-to-Start-Music Toast */
+    .audio-banner-pill {
+      position: absolute;
+      top: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(13, 17, 28, 0.92);
+      border: 1.5px solid var(--purple);
+      color: #fff;
+      font-size: 17px;
+      font-weight: 700;
+      padding: 10px 22px;
+      border-radius: 20px;
+      z-index: 120;
+      box-shadow: 0 10px 30px rgba(139, 92, 246, 0.5);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      animation: pulseMusicPill 2s infinite ease-in-out;
+    }
+
+    @keyframes pulseMusicPill {
+      0%, 100% { transform: translateX(-50%) scale(1); }
+      50% { transform: translateX(-50%) scale(1.06); }
     }
 
     /* GitHub Desktop & Pages Panels */
@@ -820,8 +1059,8 @@
         <div class="desktop-shortcuts-grid">
           <!-- Antigravity Shortcut -->
           <div class="desktop-shortcut-card">
-            <div class="shortcut-icon-box" style="background: linear-gradient(135deg, #1e1b4b, #8b5cf6); border: 2px solid var(--purple);">
-              <span>⚡</span>
+            <div class="shortcut-icon-box" style="background: transparent; border: none; box-shadow: none;">
+              <img src="assets/antigravity_icon.png" alt="Antigravity AI" style="width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 10px 22px rgba(139, 92, 246, 0.5));" />
             </div>
             <div class="shortcut-title">Antigravity AI</div>
             <div class="shortcut-desc">Autonomous Full-Stack AI IDE</div>
@@ -838,8 +1077,8 @@
 
           <!-- GitHub Desktop Shortcut -->
           <div class="desktop-shortcut-card">
-            <div class="shortcut-icon-box" style="background: linear-gradient(135deg, #1e293b, #2563eb); border: 2px solid #2563eb;">
-              <span>🐙</span>
+            <div class="shortcut-icon-box" style="background: transparent; border: none; box-shadow: none;">
+              <img src="assets/github_desktop_icon.png" alt="GitHub Desktop" style="width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 10px 22px rgba(123, 44, 191, 0.5));" />
             </div>
             <div class="shortcut-title">GitHub Desktop</div>
             <div class="shortcut-desc">Git Repository Publisher</div>
@@ -847,8 +1086,8 @@
 
           <!-- Chrome Shortcut -->
           <div class="desktop-shortcut-card">
-            <div class="shortcut-icon-box" style="background: linear-gradient(135deg, #0f172a, #10b981); border: 2px solid var(--emerald);">
-              <span>🌐</span>
+            <div class="shortcut-icon-box" style="background: transparent; border: none; box-shadow: none;">
+              <img src="assets/chrome_icon.png" alt="Google Chrome" style="width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 10px 22px rgba(66, 133, 244, 0.5));" />
             </div>
             <div class="shortcut-title">Google Chrome</div>
             <div class="shortcut-desc">GitHub Pages Host</div>
@@ -863,8 +1102,8 @@
         <!-- 1. Antigravity AI -->
         <div class="dock-app-item" id="dockAntigravity">
           <div class="dock-app-label">Antigravity AI IDE</div>
-          <div class="dock-app-icon" style="background: linear-gradient(135deg, #1e1b4b, #8b5cf6);">
-            <span>⚡</span>
+          <div class="dock-app-icon" style="background: transparent; border: none; box-shadow: none; overflow: visible;">
+            <img src="assets/antigravity_icon.png" alt="Antigravity AI" style="width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 12px 26px rgba(139, 92, 246, 0.6));" />
           </div>
           <div class="dock-active-dot" id="dotAntigravity"></div>
         </div>
@@ -878,11 +1117,11 @@
           <div class="dock-active-dot" id="dotFolder"></div>
         </div>
 
-        <!-- 3. GitHub Desktop -->
+        <!-- 3. GitHub Desktop (Official Icon) -->
         <div class="dock-app-item" id="dockGitHubDesktop">
           <div class="dock-app-label">GitHub Desktop</div>
-          <div class="dock-app-icon" style="background: linear-gradient(135deg, #0f172a, #2563eb);">
-            <span>🐙</span>
+          <div class="dock-app-icon" style="background: transparent; border: none; box-shadow: none; overflow: visible;">
+            <img src="assets/github_desktop_icon.png" alt="GitHub Desktop" style="width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 12px 26px rgba(123, 44, 191, 0.6));" />
           </div>
           <div class="dock-active-dot" id="dotGitHubDesktop"></div>
         </div>
@@ -890,8 +1129,8 @@
         <!-- 4. Google Chrome -->
         <div class="dock-app-item" id="dockChrome">
           <div class="dock-app-label">Google Chrome</div>
-          <div class="dock-app-icon" style="background: linear-gradient(135deg, #ea4335, #fbbc05, #34a853, #4285f4);">
-            <span>🌐</span>
+          <div class="dock-app-icon" style="background: transparent; border: none; box-shadow: none; overflow: visible;">
+            <img src="assets/chrome_icon.png" alt="Google Chrome" style="width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 12px 26px rgba(66, 133, 244, 0.6));" />
           </div>
           <div class="dock-active-dot" id="dotChrome"></div>
         </div>
@@ -904,7 +1143,10 @@
         <div class="window-card">
           <div class="window-header">
             <div class="window-dots"><div class="w-dot w-red"></div><div class="w-dot w-yellow"></div><div class="w-dot w-green"></div></div>
-            <div class="window-title"><span>Antigravity Software • peaceful-portfolio</span></div>
+            <div class="window-title">
+              <img src="assets/antigravity_icon.png" alt="Antigravity AI" style="width: 28px; height: 28px; border-radius: 8px; vertical-align: middle; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));" />
+              <span>Antigravity Software • peaceful-portfolio</span>
+            </div>
             <span style="font-size: 18px; font-weight: 700; color: var(--purple); background: rgba(139, 92, 246, 0.2); padding: 6px 16px; border-radius: 12px;">● Agent Active</span>
           </div>
           <div class="window-body">
@@ -916,23 +1158,25 @@
             <!-- Active Prompt Console -->
             <div class="ai-prompt-box">
               <div style="display: flex; align-items: center; gap: 14px; font-size: 22px; font-weight: 800; color: var(--cyan);">
-                <span>⚡</span><span>AI PROMPT CONSOLE</span>
+                <img src="assets/antigravity_icon.png" alt="Antigravity" style="width: 24px; height: 24px; vertical-align: middle;" />
+                <span>AI PROMPT CONSOLE</span>
               </div>
               <div style="font-size: 28px; font-weight: 700; color: #fff; min-height: 76px;">
                 <span id="promptText"></span><span style="display: inline-block; width: 4px; height: 30px; background: var(--cyan); vertical-align: middle;"></span>
               </div>
               <div style="display: flex; justify-content: flex-end; width: 100%;">
                 <button class="isolated-action-btn btn-purple" id="btnGenerate">
-                  <span>⚡</span><span>Generate &amp; Build</span>
+                  <img src="assets/antigravity_icon.png" alt="Antigravity" style="width: 26px; height: 26px; vertical-align: middle;" />
+                  <span>Generate &amp; Build</span>
                 </button>
               </div>
             </div>
 
             <!-- Code Generation Progress Checklist -->
             <div class="code-gen-checklist">
-              <div class="gen-item" id="genItem1"><span>⚡</span><span>Generating index.html (3D Canvas &amp; Structure)...</span></div>
-              <div class="gen-item" id="genItem2"><span>🎨</span><span>Generating style.css (Neon Glassmorphic Design)...</span></div>
-              <div class="gen-item" id="genItem3"><span>🚀</span><span>Generating app.js (Physics animations &amp; controls)...</span></div>
+              <div class="gen-item" id="genItem1"><span>⚡</span><span>Generating index.html (8-Bit Arcade Stage &amp; HUD)...</span></div>
+              <div class="gen-item" id="genItem2"><span>🎨</span><span>Generating style.css (Pixel Shaders &amp; CRT Scanlines)...</span></div>
+              <div class="gen-item" id="genItem3"><span>🚀</span><span>Generating game.js (8-Bit Sprite Physics &amp; Chiptunes)...</span></div>
             </div>
 
             <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
@@ -965,23 +1209,177 @@
                 <span style="color: var(--cyan);">🌐</span><span style="color: #fff; font-weight: 700;">index.html selected</span>
               </div>
               <button class="isolated-action-btn btn-cyan" id="btnLaunchLocalhost">
-                <span>🚀</span><span>Open in Chrome (:3000)</span>
+                <img src="assets/chrome_icon.png" alt="Chrome" style="width: 26px; height: 26px; vertical-align: middle;" />
+                <span>Open in Chrome (:3000)</span>
               </button>
             </div>
 
-            <!-- Live Localhost Preview -->
+            <!-- Live Localhost 8-Bit Colourful Website Game -->
             <div class="site-preview-screen" id="sitePreviewScreen" style="opacity: 0; transform: scale(0.92);">
-              <div class="site-hero-sphere" id="siteSphere"></div>
-              <div style="width: 100%; display: flex; justify-content: space-between; align-items: center; z-index: 2; margin-bottom: 22px;">
-                <div style="font-size: 28px; font-weight: 900; color: var(--cyan);">CYBER.PORTFOLIO</div>
-                <button class="isolated-action-btn btn-pill-accent" id="btnToggleTheme">
-                  <span>✨ Neon Theme</span>
-                </button>
+              <!-- Top Browser Navigation Bar -->
+              <div class="arcade-browser-bar">
+                <div class="arcade-tab">
+                  <span style="font-size: 18px;">👾</span>
+                  <span>CYBER QUEST 8-BIT</span>
+                </div>
+                <div class="arcade-url-pill">
+                  <span style="color: var(--emerald); font-weight: 800;">🔒 localhost:3000/cyber-quest-8bit</span>
+                  <span style="font-family: 'Press Start 2P', monospace; font-size: 11px; color: var(--cyan); background: rgba(0, 240, 255, 0.15); padding: 4px 8px; border-radius: 6px;">● 60 FPS</span>
+                </div>
               </div>
-              <div style="font-size: 46px; font-weight: 900; text-align: center; margin-bottom: 18px; z-index: 2;">CREATIVE DESIGNER<br/>&amp; AI DEVELOPER</div>
-              <div style="display: flex; gap: 14px; z-index: 2;">
-                <span style="padding: 8px 18px; border-radius: 20px; font-size: 19px; font-weight: 700; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: var(--cyan);">React 19</span>
-                <span style="padding: 8px 18px; border-radius: 20px; font-size: 19px; font-weight: 700; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: var(--emerald);">localhost:3000</span>
+
+              <!-- 8-Bit Arcade Scoreboard HUD -->
+              <div class="arcade-hud-bar">
+                <div class="hud-stat-box">
+                  <span class="hud-label">SCORE</span>
+                  <span class="hud-val-gold" id="hudScore">04200</span>
+                </div>
+                <div class="hud-stat-box">
+                  <span class="hud-label">COINS</span>
+                  <span class="hud-val-gold" id="hudCoins">🪙 x18</span>
+                </div>
+                <div class="hud-stat-box">
+                  <span class="hud-label">WORLD</span>
+                  <span class="hud-val-cyan">1 - 1</span>
+                </div>
+                <div class="hud-stat-box">
+                  <span class="hud-label">LIVES</span>
+                  <span class="hud-val-pink">❤️❤️❤️</span>
+                </div>
+              </div>
+
+              <!-- 8-Bit Game World Stage -->
+              <div class="arcade-game-stage" id="arcadeStage">
+                <!-- CRT Scanline Filter -->
+                <div class="arcade-crt-overlay"></div>
+
+                <!-- 8-Bit Stepped Pixel Sun -->
+                <div class="pixel-sun"></div>
+
+                <!-- Floating 8-Bit Clouds -->
+                <div class="pixel-cloud" style="top: 25px; left: 60px;">
+                  <svg width="120" height="50" viewBox="0 0 60 25" shape-rendering="crispEdges">
+                    <rect x="15" y="5" width="30" height="15" fill="#ffffff" opacity="0.9"/>
+                    <rect x="5" y="10" width="45" height="10" fill="#ffffff" opacity="0.9"/>
+                    <rect x="10" y="2" width="20" height="5" fill="#e0f2fe"/>
+                    <rect x="8" y="20" width="40" height="3" fill="#bae6fd"/>
+                  </svg>
+                </div>
+
+                <div class="pixel-cloud" style="top: 60px; right: 220px;">
+                  <svg width="90" height="40" viewBox="0 0 60 25" shape-rendering="crispEdges">
+                    <rect x="15" y="5" width="25" height="12" fill="#ffffff" opacity="0.8"/>
+                    <rect x="5" y="10" width="40" height="8" fill="#ffffff" opacity="0.8"/>
+                    <rect x="8" y="18" width="35" height="3" fill="#bae6fd"/>
+                  </svg>
+                </div>
+
+                <!-- Floating Brick Platform & Mystery Block -->
+                <div class="floating-brick-platform" style="bottom: 270px; left: 140px;">
+                  <!-- Left Brick -->
+                  <div class="pixel-brick"></div>
+
+                  <!-- Mystery Question Block [?] -->
+                  <div id="mysteryBox" style="position: relative; width: 54px; height: 54px; margin: 0 4px; z-index: 12;">
+                    <svg viewBox="0 0 24 24" width="54" height="54" class="mystery-block-svg" shape-rendering="crispEdges">
+                      <rect x="0" y="0" width="24" height="24" fill="#d97706"/>
+                      <rect x="1" y="1" width="22" height="22" fill="#f59e0b"/>
+                      <rect x="2" y="2" width="20" height="20" fill="#fbbf24"/>
+                      <rect x="2" y="2" width="2" height="2" fill="#78350f"/>
+                      <rect x="20" y="2" width="2" height="2" fill="#78350f"/>
+                      <rect x="2" y="20" width="2" height="2" fill="#78350f"/>
+                      <rect x="20" y="20" width="2" height="2" fill="#78350f"/>
+                      <!-- Question mark -->
+                      <rect x="8" y="5" width="8" height="2" fill="#ffffff"/>
+                      <rect x="14" y="7" width="3" height="3" fill="#ffffff"/>
+                      <rect x="11" y="10" width="4" height="3" fill="#ffffff"/>
+                      <rect x="11" y="13" width="3" height="2" fill="#ffffff"/>
+                      <rect x="11" y="16" width="3" height="3" fill="#ffffff"/>
+                    </svg>
+                  </div>
+
+                  <!-- Right Brick -->
+                  <div class="pixel-brick"></div>
+                  <div class="pixel-brick"></div>
+                </div>
+
+                <!-- Golden Coin (Hidden until mystery block is struck) -->
+                <div id="bonusCoin" style="position: absolute; bottom: 330px; left: 204px; opacity: 0; z-index: 15; pointer-events: none;">
+                  <svg viewBox="0 0 18 24" width="46" height="60" shape-rendering="crispEdges">
+                    <rect x="4" y="1" width="10" height="2" fill="#d97706"/>
+                    <rect x="2" y="3" width="14" height="18" fill="#f59e0b"/>
+                    <rect x="4" y="3" width="10" height="18" fill="#fde047"/>
+                    <rect x="7" y="6" width="4" height="12" fill="#ca8a04"/>
+                    <rect x="4" y="21" width="10" height="2" fill="#d97706"/>
+                    <rect x="5" y="4" width="2" height="4" fill="#ffffff"/>
+                  </svg>
+                </div>
+
+                <!-- Floating +500 PTS Score -->
+                <div class="retro-floating-score" id="floatingPts" style="bottom: 340px; left: 175px;">+500 PTS!</div>
+
+                <!-- 8-Bit Hero Character Sprite -->
+                <div id="heroSprite" style="position: absolute; bottom: 96px; left: 195px; z-index: 14; filter: drop-shadow(0 6px 12px rgba(0,0,0,0.6));">
+                  <svg viewBox="0 0 24 28" width="76" height="88" shape-rendering="crispEdges">
+                    <!-- Helmet & Glowing Visor -->
+                    <rect x="7" y="1" width="10" height="2" fill="#00f0ff"/>
+                    <rect x="5" y="3" width="14" height="7" fill="#1e1b4b"/>
+                    <rect x="7" y="4" width="10" height="3" fill="#00f0ff"/>
+                    <rect x="9" y="5" width="4" height="1" fill="#ffffff"/>
+                    <!-- Scarf / Cape -->
+                    <rect x="3" y="9" width="4" height="8" fill="#ff007f"/>
+                    <rect x="1" y="12" width="3" height="8" fill="#ec4899"/>
+                    <!-- Torso & Cyber Armor -->
+                    <rect x="7" y="10" width="10" height="8" fill="#2563eb"/>
+                    <rect x="9" y="11" width="6" height="4" fill="#60a5fa"/>
+                    <rect x="11" y="12" width="2" height="2" fill="#ffd700"/>
+                    <!-- Belt -->
+                    <rect x="7" y="18" width="10" height="2" fill="#ffd700"/>
+                    <!-- Legs -->
+                    <rect x="7" y="20" width="4" height="5" fill="#1e3a8a"/>
+                    <rect x="13" y="20" width="4" height="5" fill="#1e3a8a"/>
+                    <!-- Neon Cyan Boots -->
+                    <rect x="5" y="25" width="6" height="3" fill="#00f0ff"/>
+                    <rect x="13" y="25" width="6" height="3" fill="#00f0ff"/>
+                    <rect x="6" y="26" width="3" height="1" fill="#ffffff"/>
+                    <rect x="14" y="26" width="3" height="1" fill="#ffffff"/>
+                  </svg>
+                </div>
+
+                <!-- 8-Bit Purple Slime Enemy -->
+                <div id="enemySprite" style="position: absolute; bottom: 96px; left: 560px; z-index: 12;">
+                  <svg viewBox="0 0 24 20" width="68" height="56" shape-rendering="crispEdges">
+                    <rect x="6" y="2" width="12" height="3" fill="#9333ea"/>
+                    <rect x="3" y="5" width="18" height="11" fill="#a855f7"/>
+                    <rect x="1" y="14" width="22" height="4" fill="#7e22ce"/>
+                    <rect x="6" y="7" width="3" height="4" fill="#ffffff"/>
+                    <rect x="8" y="8" width="2" height="3" fill="#0f172a"/>
+                    <rect x="14" y="7" width="3" height="4" fill="#ffffff"/>
+                    <rect x="14" y="8" width="2" height="3" fill="#0f172a"/>
+                    <rect x="4" y="11" width="2" height="2" fill="#ec4899"/>
+                    <rect x="17" y="11" width="2" height="2" fill="#ec4899"/>
+                  </svg>
+                </div>
+
+                <!-- Ground Grid Platform -->
+                <div class="ground-grid-platform">
+                  <div class="ground-neon-tiles"></div>
+                  <div style="z-index: 2; font-family: 'Press Start 2P', monospace; font-size: 13px; color: var(--cyan); letter-spacing: 1px;">
+                    ◄ STAGE 1-1 • RETRO CYBER QUEST • INSERT COIN TO PLAY ►
+                  </div>
+                </div>
+
+                <!-- Arcade Action Controls (Super Mouse Pointer Targets Jump Button) -->
+                <div class="arcade-actions-bar">
+                  <button class="isolated-action-btn btn-arcade-jump" id="btnArcadeJump">
+                    <span style="font-size: 26px;">🕹️</span>
+                    <span>8-BIT JUMP &amp; HIT BLOCK!</span>
+                  </button>
+                  <button class="isolated-action-btn btn-arcade-mode" id="btnArcadeRainbow">
+                    <span style="font-size: 22px;">✨</span>
+                    <span>POWER-UP</span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -995,7 +1393,10 @@
         <div class="window-card">
           <div class="window-header">
             <div class="window-dots"><div class="w-dot w-red"></div><div class="w-dot w-yellow"></div><div class="w-dot w-green"></div></div>
-            <div class="window-title"><span>GitHub Desktop • Current Repository: peaceful-portfolio</span></div>
+            <div class="window-title">
+              <img src="assets/github_desktop_icon.png" alt="GitHub Desktop" style="width: 28px; height: 28px; border-radius: 8px; vertical-align: middle; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));" />
+              <span>GitHub Desktop • Current Repository: peaceful-portfolio</span>
+            </div>
             <span style="font-size: 18px; font-weight: 700; color: #93c5fd; background: rgba(37, 99, 235, 0.2); padding: 6px 16px; border-radius: 12px;">● Branch: main</span>
           </div>
           <div class="window-body">
@@ -1007,20 +1408,21 @@
             <div class="desktop-commit-action-box">
               <div style="display: flex; justify-content: space-between; align-items: center;">
                 <div style="font-family: 'JetBrains Mono', monospace; font-size: 22px; color: #93c5fd; font-weight: 700;">
-                  <span>3 Staged Files: index.html, style.css, app.js</span>
+                  <span>3 Staged Files: index.html, style.css, game.js</span>
                 </div>
                 <span style="font-size: 18px; color: var(--emerald); font-weight: 700;">✓ Ready to Publish</span>
               </div>
               <div style="background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 16px; padding: 18px 22px; font-family: 'JetBrains Mono', monospace; font-size: 22px; color: #fff;">
-                <span>feat: launch awesome portfolio website 🚀</span>
+                <span>feat: launch 8-bit colourful arcade game 👾🕹️</span>
               </div>
               <button class="isolated-action-btn btn-gh-desktop" id="btnPublishDesktop" style="width: 100%;">
-                <span>🚀</span><span>Publish repository to GitHub</span>
+                <img src="assets/github_desktop_icon.png" alt="GitHub Desktop Icon" style="width: 32px; height: 32px; border-radius: 8px; vertical-align: middle;" />
+                <span>Publish repository to GitHub</span>
               </button>
             </div>
 
             <div id="bannerDesktopPublish" style="background: rgba(37, 99, 235, 0.2); border: 1.5px solid #2563eb; border-radius: 18px; padding: 16px 22px; display: flex; align-items: center; gap: 14px; font-family: 'JetBrains Mono', monospace; font-size: 21px; color: #93c5fd; opacity: 0;">
-              <span>✓</span><span>Pushing to github.com/developer/peaceful-portfolio... 100% Done!</span>
+              <span>✓</span><span>Pushing to github.com/developer/cyber-quest-8bit... 100% Done!</span>
             </div>
           </div>
         </div>
@@ -1033,7 +1435,10 @@
         <div class="window-card">
           <div class="window-header">
             <div class="window-dots"><div class="w-dot w-red"></div><div class="w-dot w-yellow"></div><div class="w-dot w-green"></div></div>
-            <div class="window-title"><span>Google Chrome • github.com/developer/portfolio/settings/pages</span></div>
+            <div class="window-title">
+              <img src="assets/chrome_icon.png" alt="Google Chrome" style="width: 28px; height: 28px; border-radius: 8px; vertical-align: middle; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));" />
+              <span>Google Chrome • github.com/developer/cyber-quest-8bit/settings/pages</span>
+            </div>
             <span style="font-size: 18px; font-weight: 700; color: var(--emerald); background: rgba(16, 185, 129, 0.2); padding: 6px 16px; border-radius: 12px;">● GitHub Pages Live</span>
           </div>
           <div class="window-body">
@@ -1059,11 +1464,11 @@
             <!-- Live Site Announcement Card with Confetti Target -->
             <div class="pages-live-banner" id="pagesLiveBanner" style="opacity: 0; transform: scale(0.9);">
               <div class="live-check-circle">✓</div>
-              <h3 style="font-size: 34px; font-weight: 900; color: #fff;">Your Site Is Live Globally!</h3>
-              <p style="font-size: 20px; color: #cbd5e1; max-width: 600px;">GitHub Pages has deployed your portfolio to edge CDN with free HTTPS.</p>
+              <h3 style="font-size: 34px; font-weight: 900; color: #fff;">Your 8-Bit Game Is Live Globally!</h3>
+              <p style="font-size: 20px; color: #cbd5e1; max-width: 600px;">GitHub Pages has deployed your retro arcade web game to edge CDN with free HTTPS.</p>
               
               <button class="isolated-action-btn btn-live-url" id="btnOpenLiveSite">
-                <span>🔗</span><span>https://developer.github.io/portfolio/</span>
+                <span>🔗</span><span>https://developer.github.io/cyber-quest-8bit/</span>
               </button>
             </div>
           </div>
@@ -1114,15 +1519,26 @@
     <!-- Tap-to-Play/Pause Flash Icon -->
     <div class="play-state-flash" id="playStateFlash">▶</div>
 
+    <!-- Floating Audio Start Toast -->
+    <div class="audio-banner-pill" id="audioBannerPill">
+      <span>🎵 Tap anywhere to start with music</span>
+    </div>
+
+    <!-- Background Music Audio Element (User-Uploaded Track) -->
+    <audio id="bgMusic" src="assets/bg_music.mp3" preload="auto" playsinline loop></audio>
+
   </div>
 
   <!-- HYPERFRAMES TIMELINE, SOUND SYNTHESIZER & LAUNCHPAD ORCHESTRATION -->
   <script>
     // -------------------------------------------------------------
-    // 1. WEB AUDIO API SOUND SYNTHESIZER
+    // 1. WEB AUDIO API SOUND SYNTHESIZER & BACKGROUND MUSIC
     // -------------------------------------------------------------
     let audioCtx = null;
     let soundEnabled = true;
+    const bgMusic = document.getElementById("bgMusic");
+    if (bgMusic) bgMusic.volume = 0.65;
+    const audioBannerPill = document.getElementById("audioBannerPill");
 
     function initAudio() {
       if (!audioCtx) {
@@ -1134,6 +1550,55 @@
       if (audioCtx && audioCtx.state === 'suspended') {
         audioCtx.resume();
       }
+      if (bgMusic && soundEnabled && bgMusic.paused) {
+        bgMusic.play().then(() => {
+          if (audioBannerPill) {
+            audioBannerPill.style.opacity = "0";
+            setTimeout(() => { if (audioBannerPill.parentNode) audioBannerPill.remove(); }, 400);
+          }
+        }).catch((e) => {
+          console.log("Audio autoplay waiting for user interaction:", e);
+        });
+      }
+    }
+
+    // Try playing immediately if browser permissions allow
+    window.addEventListener("DOMContentLoaded", () => {
+      initAudio();
+    });
+
+    // 8-Bit Retro Jump Sound (Square wave pitch sweep)
+    function sfx8BitJump() {
+      if (!soundEnabled || !audioCtx) return;
+      const now = audioCtx.currentTime;
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'square';
+      osc.frequency.setValueAtTime(160, now);
+      osc.frequency.exponentialRampToValueAtTime(620, now + 0.16);
+      gain.gain.setValueAtTime(0.24, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.18);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start(now);
+      osc.stop(now + 0.19);
+    }
+
+    // 8-Bit Retro Coin Ping (Legendary B5 -> E6 chime)
+    function sfx8BitCoin() {
+      if (!soundEnabled || !audioCtx) return;
+      const now = audioCtx.currentTime;
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'square';
+      osc.frequency.setValueAtTime(987.77, now); // B5
+      osc.frequency.setValueAtTime(1318.51, now + 0.08); // E6
+      gain.gain.setValueAtTime(0.26, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.48);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start(now);
+      osc.stop(now + 0.5);
     }
 
     function sfxMouseClick() {
@@ -1364,7 +1829,7 @@
     /* =========================================================================
        ACT 2: ANTIGRAVITY IDE ➔ CODE GENERATING & COMPLETE (4.5s - 11.0s)
        ========================================================================= */
-    const promptPhrases = "Create responsive 3D cyberpunk portfolio with animations";
+    const promptPhrases = "Create 8-bit colourful retro arcade game website";
     const promptEl = document.getElementById("promptText");
     let lastKeyCount = 0;
 
@@ -1421,7 +1886,7 @@
     }, 9.8);
 
     /* =========================================================================
-       ACT 3: DESKTOP ➔ LAUNCH FOLDER & RUN LOCALHOST SITE (11.0s - 18.0s)
+       ACT 3: DESKTOP ➔ LAUNCH FOLDER & RUN 8-BIT WEBSITE GAME (11.0s - 18.0s)
        ========================================================================= */
     // Cursor glides to the Folders icon in the Dock (Center: x: 475, y: 1805)
     addClick(tl, 10.6, 475, 1805, "#dockFolder", "dock-hovered", "dock-clicked", sfxWhoosh);
@@ -1438,24 +1903,94 @@
     // Click on "#btnLaunchLocalhost" inside Finder (Center: x: 740, y: 760)
     addClick(tl, 12.8, 740, 760, "#btnLaunchLocalhost", "btn-hovered", "btn-pressed", sfxSuccessChime);
 
-    // Localhost preview reveals
+    // 8-Bit Colourful Website Game reveals inside preview
     tl.to("#sitePreviewScreen", {
       opacity: 1,
       scale: 1,
       duration: 0.6,
       ease: "power3.out"
-    }, 13.9);
+    }, 13.6);
 
-    // Click theme toggle on local site (Center: x: 820, y: 980)
-    addClick(tl, 14.8, 820, 980, "#btnToggleTheme", "btn-hovered", "btn-pressed", sfxSuccessChime);
-
-    tl.to("#siteSphere", {
-      scale: 1.45,
-      filter: "blur(35px)",
-      duration: 0.5,
+    // Subtle ambient animation in 8-bit game world
+    tl.to(".pixel-cloud", {
+      x: 35,
+      duration: 3.0,
+      ease: "sine.inOut",
       yoyo: true,
       repeat: 1
-    }, 15.8);
+    }, 13.6);
+
+    tl.to("#enemySprite", {
+      x: 45,
+      duration: 1.2,
+      ease: "sine.inOut",
+      yoyo: true,
+      repeat: 2
+    }, 13.6);
+
+    // Super Mouse Pointer glides to the Arcade Jump Button (Center: x: 450, y: 1530)
+    addClick(tl, 14.5, 450, 1530, "#btnArcadeJump", "btn-hovered", "btn-pressed", sfx8BitJump);
+
+    // 8-Bit Hero Character leaps upwards in a parabolic jump arc
+    tl.to("#heroSprite", {
+      y: -175,
+      duration: 0.38,
+      ease: "power2.out"
+    }, 15.4);
+
+    // Peak of Jump: Hero strikes the Mystery Block [?]
+    tl.add(() => {
+      sfx8BitCoin();
+      // Block bumps up
+      gsap.to("#mysteryBox", { y: -16, duration: 0.08, yoyo: true, repeat: 1, ease: "power2.out" });
+      // Question mark becomes stone
+      const qmark = document.querySelector("#mysteryBox svg rect:nth-child(3)");
+      if (qmark) qmark.setAttribute("fill", "#64748b");
+    }, 15.78);
+
+    // Golden Coin shoots out of the Mystery Block
+    tl.fromTo("#bonusCoin", 
+      { y: 0, opacity: 1, scale: 0.5 },
+      { y: -110, opacity: 1, scale: 1.25, duration: 0.45, ease: "power2.out" },
+      15.78
+    );
+    tl.to("#bonusCoin", {
+      opacity: 0,
+      y: -140,
+      duration: 0.22,
+      ease: "power1.in"
+    }, 16.23);
+
+    // Floating +500 PTS Retro Score Popup
+    tl.fromTo("#floatingPts",
+      { y: 0, opacity: 1 },
+      { y: -80, opacity: 0, duration: 0.65, ease: "power1.out" },
+      15.82
+    );
+
+    // HUD updates score & coin counter
+    tl.add(() => {
+      const scoreEl = document.getElementById("hudScore");
+      const coinEl = document.getElementById("hudCoins");
+      if (scoreEl) scoreEl.textContent = "04700";
+      if (coinEl) coinEl.textContent = "🪙 x19";
+    }, 15.85);
+
+    // Slime enemy reacts / squishes
+    tl.to("#enemySprite", {
+      scaleY: 0.3,
+      scaleX: 1.4,
+      duration: 0.18,
+      yoyo: true,
+      repeat: 1
+    }, 15.85);
+
+    // Hero Character lands smoothly back down on the ground platform
+    tl.to("#heroSprite", {
+      y: 0,
+      duration: 0.35,
+      ease: "bounce.out"
+    }, 16.16);
 
     // Finder Window Minimizes back to Desktop
     tl.to("#windowFinder", {
@@ -1567,6 +2102,12 @@
       soundEnabled = !soundEnabled;
       soundIcon.textContent = soundEnabled ? "🔊" : "🔇";
       btnSoundToggle.style.color = soundEnabled ? "#fff" : "var(--pink)";
+      if (bgMusic) {
+        bgMusic.muted = !soundEnabled;
+        if (soundEnabled && bgMusic.paused && isPlaying) {
+          bgMusic.play().catch(() => {});
+        }
+      }
     });
 
     // Tap Anywhere on Screen to Toggle Play/Pause (Reels / TikTok Style)
@@ -1575,9 +2116,11 @@
       initAudio();
       if (isPlaying) {
         tl.pause();
+        if (bgMusic) bgMusic.pause();
         playStateFlash.textContent = "❚❚";
       } else {
         tl.play();
+        if (bgMusic && soundEnabled) bgMusic.play().catch(() => {});
         playStateFlash.textContent = "▶";
       }
       isPlaying = !isPlaying;
@@ -1592,9 +2135,11 @@
         initAudio();
         if (isPlaying) {
           tl.pause();
+          if (bgMusic) bgMusic.pause();
           playStateFlash.textContent = "❚❚";
         } else {
           tl.play();
+          if (bgMusic && soundEnabled) bgMusic.play().catch(() => {});
           playStateFlash.textContent = "▶";
         }
         isPlaying = !isPlaying;
@@ -1603,14 +2148,25 @@
       }
     });
 
-    // Slim Edge-to-Edge Progress Strip Update
+    // Slim Edge-to-Edge Progress Strip Update & Music Drift Synchronization
     tl.eventCallback("onUpdate", () => {
       const progress = tl.progress();
       storyProgressStrip.style.width = (progress * 100) + "%";
+
+      if (bgMusic && !bgMusic.paused) {
+        const drift = Math.abs(bgMusic.currentTime - tl.time());
+        if (drift > 0.35) {
+          bgMusic.currentTime = tl.time();
+        }
+      }
     });
 
     tl.eventCallback("onComplete", () => {
       tl.restart();
+      if (bgMusic) {
+        bgMusic.currentTime = 0;
+        if (soundEnabled) bgMusic.play().catch(() => {});
+      }
     });
 
     function createConfettiBurst(originX, originY) {
